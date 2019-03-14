@@ -1,0 +1,45 @@
+service: ecs-monitor
+
+plugins: 
+
+provider:
+  name: aws
+  region: ap-southeast-2  
+  runtime: nodejs8.10
+  profile: ecs-monitor
+  logRetentionInDays: 7
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - 'cloudwatch:PutMetricData'
+      Resource: 
+        - '*'
+    - Effect: 'Allow'
+      Action:
+        - 'ecs:List*'
+        - 'ecs:Describe*'
+      Resource: 
+        - '*'
+package:
+  individually: true
+
+custom:
+
+functions:
+
+  publishmetrics:
+    handler: 'lambda/publishmetrics.handler'
+    name: '${self:service}-publishmetrics'
+    description: 'Publishes ECS cluster metrics to CloudWatch'
+    events:
+      - schedule: rate(1 minute)
+    environment:    
+      CLOUDWATCH_NAMESPACE: 'ecs-services'
+      REGION: ${self:provider.region}
+    package:
+      exclude:
+        - '**'
+      include:
+        - 'lambda/publishmetrics.js'
+    memorySize: 128
+    timeout: 60
