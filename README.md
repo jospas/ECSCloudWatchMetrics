@@ -1,7 +1,5 @@
 # Generating CloudWatch metrics for ECS Clusters
 
-By: Josh Passenger
-
 Currently tagging is not supported for ECS services, a work around is to generate regular Cloudwatch metrics using a scheduled Lambda.
 
 ## Installing library dependencies
