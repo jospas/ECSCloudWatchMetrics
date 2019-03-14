@@ -33,3 +33,16 @@ Deploy to your AWS account using:
 ## Inspect the metrics in CloudWatch
 
 	...
+
+### Authors
+
+**Josh Passenger** AWS Solutions Architect - [jospas@amazon.com](mailto:jospas@amazon.com)
+
+### License
+
+This project is licensed under the Apache 2 License - see the [LICENSE.txt](LICENSE.txt) file for details
+
+### Warranty
+
+No warranty is provided or implied with this software, 
+it is provided as a Proof of Concept (POC) example and will require additional error checking code and testing.	
